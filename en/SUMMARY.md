@@ -9,8 +9,6 @@
   * [Device Management](resource/home_device.md#device-management)
   * [Camera Device](resource/home_device.md#camera)
 * [Device Configuration](resource/activitor.md)
-  * [Qr code mode](resource/activitor.md#qr-code-mode)
-  * [Binding mode](resource/activitor.md#binding-mode)
 * [Camera Functions](resource/live.md)
   * [Live Video](resource/live.md#live-video)
   * [Playback](resource/playback.md)
