@@ -1,4 +1,4 @@
-# Home and device management
+# Home and Device Management
 
 ## Home management
 
@@ -10,7 +10,7 @@ All functions related to device management correspond to the `TuyaSmartDevice` c
 
 > Always obtain the device list through the home, and get the device id from the device list of the home to initialize the `TuyaSmartDevice` object to avoid the situation where the home data is not synchronized and `TuyaSmartDevice` initialization fails.
 
-## Camera
+## Camera device
 
 After obtaining the device list, you can determine whether it is a smart camera device based on the type of device. If it is a smart camera device, you can create a camera object based on the information in `TuyaSmartDeviceModel`.
 
@@ -75,7 +75,8 @@ Configuration information needs to be obtained through Tuya open api.
 
 |API | Version | Description |
 | --------------------- | ---- | ---------------------- ----- |
-|tuya.m.ipc.config.get | 2.0 | Get p2p configuration information of camera |
+|~~tuya.m.ipc.config.get~~ (Deprecated) | 2.0 | Get p2p configuration information of camera |
+|tuya.m.rtc.session.init | 1.0 | Get p2p configuration information of camera, and Tuya Cloud will send a offer to device, speed up the connection process |
 
 **Parameters**
 

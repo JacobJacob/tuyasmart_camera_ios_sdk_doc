@@ -4,7 +4,7 @@
 
 ### Introduction
 
-Tuya Smart Camera iOS SDK encapsulated the camera features base on Tuya Smart Home iOS SDK. The SDK is divided into four parts: Utils, Communication Layer，Core layer, Business Layer.
+Camera SDK encapsulated the camera features base on Home SDK. The SDK is divided into four parts: Utils, Communication Layer，Core layer, Business Layer.
 
 * Utils provides some common tools method，ex: JSON serialization, string codec.
 * Communication Layer encapsulated  HTTP，MQTT，Socket，p2p network channels.

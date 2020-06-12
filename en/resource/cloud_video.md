@@ -2,6 +2,12 @@
 
 Tuya IoT provides cloud storage service for smart camera, which can upload the video recorded by the device to Tuya cloud.
 
+## Flow chart
+
+Request the cloud storage service status first. If the cloud storage service is not activated or has expired and the cloud video has been completely deleted (after the cloud storage service expires, the uploaded cloud video will be retained for some days), you need to first purchase cloud storage services. If the cloud storage service is in the validity period, first request the dates of the cloud storage video, and then request the relevant data of the specified date, including cloud storage events, timeline data, authentication information, etc. After that, you can choose a cloud storage event or a point in time to start playing cloud video.
+
+![img](./images/cloudVideo.jpg)
+
 ## Cloud service
 
 ### SDK integration

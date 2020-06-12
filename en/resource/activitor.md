@@ -1,9 +1,9 @@
-# Network Configuration
+# Device Configuration
 
 The network configuration modes supported by Tuya smart camera hardware module including:
 
-* quick connection mode（TLink, it is referred to as the EZ mode）
-* hotspot mode (AP mode)
+* Quick connection mode（TLink, it is referred to as the EZ mode）
+* Hotspot mode (AP mode)
 * Qr code mode
 
 > Qr code mode is relatively simple, it is recommended to use the qr code mode, if the device can not scan the qr code, then try quick connection mode.

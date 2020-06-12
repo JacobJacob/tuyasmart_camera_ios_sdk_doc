@@ -5,10 +5,26 @@
 | Version | Description | Author | Date       |
 | ------- | ----------- | ------ | ---------- |
 | v1.0.0  | Create      | FuLang | 2020-03-01 |
+| v1.1.0  | Update      | FuLang | 2020-06-05 |
 
 
 
 ## SDK change log
+
+### 3.17.0 (2020-06-05)
+
+| Module              | Version |
+| ------------------- | ------- |
+| TuyaCameraSDK       | 3.17.3  |
+| TuyaSmartCameraBase | 4.17.0  |
+| TuyaSmartCameraM    | 4.17.3  |
+| TuyaSmartCameraT    | 4.17.6  |
+| TuyaSmartCameraKit  | 4.17.1  |
+
+**New Features**
+
+* P2P communication library upgrade, improve connection speed and stability.
+* The open api for request p2p config data needs to be updated to `tuya.m.rtc.session.init`, the version is `1.0`.
 
 ### 3.15.0 (2020-02-21)
 

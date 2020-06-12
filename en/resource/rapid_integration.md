@@ -2,7 +2,7 @@
 
 ## Solutions introduction
 
-Before integrate Tuya smart camera SDK, please learn about [Tuya Smart iOS SDK](https://tuyainc.github.io/tuyasmart_home_ios_sdk_doc/en/).
+Before integrate Tuya smart camera SDK, please learn about [Home SDK](https://tuyainc.github.io/tuyasmart_home_ios_sdk_doc/en/).
 
 The Tuya Open Platform provides various integrate modes based on Tuya's mature IoT services, refer to [Solutions Introduction](https://docs.tuya.com/en/iot/open-api/quick-start/solution-overview).
 
@@ -10,9 +10,9 @@ The Tuya Open Platform provides various integrate modes based on Tuya's mature I
 
 Based on the partner own App, embed in Tuya's mini sdk (only includes the distribution network package: ssid, password and user token obtained from the cloud). Device status changes can't be pushed to the App directly, the pushing ability to rely on the partner's own cloud.
 
-However, since the camera cannot be controlled using open api, the Mini SDK solution still needs to integrate the camera SDK.
+However, since the camera cannot be controlled using open api, the Mini SDK solution still needs to integrate the Camera SDK.
 
-You can use the open api provided by Tuya Cloud to develop user management, cloud storage, alarm detection, and functions based on data points. Use Tuya smart camera SDK to develop the basic functions of camera like live video.
+You can use the open api provided by Tuya Cloud to develop user management, cloud storage, alarm detection, and functions based on data points. Use Tuya smart Camera SDK to develop the basic functions of camera like live video.
 
 **Modules**
 
@@ -37,7 +37,7 @@ end
 
 ### Full SDK
 
-The App is based entirely on the full version of the Tuya SDK, which can take full advantage of the various capabilities provided by the Tuya SDK, such as: distribution network, device control, home management, scene management, upgrade management, etc. and reduce the difficulty of App development.
+The App is based entirely on the full version of the Home SDK, which can take full advantage of the various capabilities provided by the Home SDK, such as: distribution network, device control, home management, scene management, upgrade management, etc. and reduce the difficulty of App development.
 
 **Modules**
 
