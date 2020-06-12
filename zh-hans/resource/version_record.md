@@ -10,6 +10,21 @@
 
 ## SDK 更新记录
 
+### 3.17.0 (2020-06-05)
+
+| 模块                | 版本   |      |
+| ------------------- | ------ | ---- |
+| TuyaCameraSDK       | 3.17.3 |      |
+| TuyaSmartCameraBase | 4.17.0 |      |
+| TuyaSmartCameraM    | 4.17.3 |      |
+| TuyaSmartCameraT    | 4.17.6 |      |
+| TuyaSmartCameraKit  | 4.17.1 |      |
+
+**更新说明**
+
+* P2P 通信库升级，提升连接速度和稳定性。
+* Demo 中获取 p2p config 数据的接口需要更新为 `tuya.m.rtc.session.init`，版本是 `1.0`。
+
 ### 3.15.0 (2020-02-21)
 
 | 模块                | 版本   |
