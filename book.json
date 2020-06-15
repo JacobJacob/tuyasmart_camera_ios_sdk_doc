@@ -4,7 +4,13 @@
     "prism",
     "-highlight",
     "anchors",
-    "mermaid-gb3"
+    "splitter",
+    "github",
+    "anchor-navigation-ex",
+    "ga",
+    "expandable-chapters-small",
+    "pageview-count",
+    "language-picker"
   ],
   "pluginsConfig": {
     "prism": {
@@ -14,15 +20,22 @@
       "lang": {
         "oc": "objectivec",
         "objc": "objectivec",
-        "objective-c": "objectivec",
-        "Objective-C": "objectivec",
-        "obejctivec": "objectivec",
-        "Swift": "swift"
+        "objective-c": "objectivec"
       },
       "ignore": [
-        "sequence",
-        "mermaid"
+        "sequence"
       ]
+    },
+    "github": {
+      "url": "https://github.com/TuyaInc/tuyasmart_home_ios_sdk"
+    },
+    "anchor-navigation-ex": {
+      "showLevel": false,
+      "associatedWithSummary": false,
+      "showGoTop": true
+    },
+    "ga": {
+      "token": "UA-165828612-1"
     }
   }
 }
