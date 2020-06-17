@@ -15,6 +15,10 @@ Camera SDK 基于 Home SDK 封装了智能摄像机的相关功能。整个 SDK 
 
 ![architecture](./images/architecture.jpg)
 
+### 组件模块
+
+Camera SDK 依赖一部分 Home SDK 中的组件，包括账户管理，家庭设备管理，设备配网，基础通信模块等。在使用 Cocoapods 导入 Camera SDK 时，会自动导入依赖的组件。
+
 **模块说明**
 
 | 模块                         | 说明                                             |

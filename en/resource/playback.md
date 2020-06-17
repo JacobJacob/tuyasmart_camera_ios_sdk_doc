@@ -192,9 +192,7 @@ In addition, after successfully obtaining the time data of the video recording s
 
 <img src="./images/playback.jpg" alt="视频直播流程图" style="zoom:70%;" />
 
-
-
-### Example
+**Example**
 
 ObjC
 

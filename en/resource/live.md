@@ -190,7 +190,7 @@ Camera operation failed callback.
 
 The meaning of `errorCode` can refer to the [Error Code](./resource/errors.html).
 
-### Example
+**Example**
 
 ObjC
 

@@ -192,9 +192,7 @@
 
 <img src="./images/playback.jpg" alt="视频直播流程图" style="zoom:70%;" />
 
-
-
-### 示例代码
+**示例代码**
 
 ObjC
 

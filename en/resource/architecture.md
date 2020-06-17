@@ -15,6 +15,10 @@ Camera SDK encapsulated the camera features base on Home SDK. The SDK is divided
 
 ![architecture](./images/architecture.jpg)
 
+### Component module
+
+The Camera SDK relies on some components in the Home SDK, including account management, home device management, device configuration, and basic communication module. When using Cocoapods to introduce Camera SDK, the dependent components will be automatically introduced.
+
 **Modules**
 
 | Module                       | Description                                                  |

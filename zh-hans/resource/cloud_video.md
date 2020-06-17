@@ -10,9 +10,9 @@
 
 ## 服务购买
 
-### SDK集成
+### 组件引入
 
-云存储购买需要引入云存储服务购买页面的 SDK，在 podfile 中增加下面代码
+云存储购买需要引入云存储服务购买页面的组件，在 podfile 中增加下面代码
 
 ```ruby
 # 涂鸦平台的开放库
@@ -27,7 +27,7 @@ end
 
 然后在工程主目录下执行`pod update`。
 
-### 初始化
+### 使用方法
 
 云存储购买服务 SDK 的初始化需要传入涂鸦平台上注册 App 的渠道标识符。
 
@@ -44,8 +44,6 @@ end
 | 参数   | 说明             |
 | ------ | ---------------- |
 | scheme | App 的渠道标识符 |
-
-
 
 **示例代码**
 
@@ -69,10 +67,6 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 }
 ```
 
-### 用户状态同步
-
-在用户登录/登出的时候，需要同步用户登录状态。
-
 **接口说明**
 
 同步用户登陆状态
@@ -81,7 +75,7 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 + (void)userStateChanged;
 ```
 
-
+> 云存储服务与账户强关联，务必在在用户登录/登出的时候调用，以同步用户登录状态。
 
 **示例代码**
 
@@ -169,8 +163,6 @@ TYCameraCloudServicePanelSDK.cloudServicePanel(withDevice: deviceModel, success:
 | TuyaSmartCloudManager         | 云存储服务状态，视频数据维护和云视频播放 |
 | TuyaSmartCloudManagerDelegate | 云存储视频播放，视频帧数据回调代理       |
 
-### 初始化
-
 `TuyaSmartCloudManager`初始化时，需要传入设备 id 。云存储默认是静音开始播放的，如果需要播放时开启声音，可在初始化时，设置静音状态为 `NO`。云存储播放时，视频帧数据和帧头信息都将用过代理方法回调。
 
 **接口说明**
@@ -186,10 +178,6 @@ TYCameraCloudServicePanelSDK.cloudServicePanel(withDevice: deviceModel, success:
 | 参数  | 说明    |
 | ----- | ------- |
 | devId | 设备 id |
-
-
-
-### 代理
 
 云存储代理接口为`TuyaSmartCloudManagerDelegate`，只有一个代理方法，会返回每一帧视频的 YUV 数据和帧信息，如果你想要自己渲染视频，可以将 `TuyaSmartCloudManager`的`autoRender`属性设置为`NO`（默认为`YES`），并在代理方法中获取视频帧的YUV数据加以渲染。
 
@@ -211,7 +199,7 @@ TYCameraCloudServicePanelSDK.cloudServicePanel(withDevice: deviceModel, success:
 
 
 
-### 加载云存储数据
+### 云存储数据
 
 在使用云存储播放功能前，还需要先加载云存储的相关数据，这个接口会返回云存储服务当前的状态，以及加载对应的加密秘钥，鉴权信息等。
 
@@ -242,11 +230,9 @@ TYCameraCloudServicePanelSDK.cloudServicePanel(withDevice: deviceModel, success:
 | TuyaSmartCloudStateExpiredData   | 云存储服务已过期，但是还有可以查看的回放视频 |
 | TuyaSmartCloudStateLoadFailed    | 加载失败                                     |
 
+> 云存储服务过期后，已上传的云存储视频还会预留一段时间（通常是 7 天，具体看云存储服务协议），如果在此期间没有续费，到期后，云存储视频将会删除。
 
-
-云存储服务过期后，已上传的云存储视频还会预留一段时间（通常是 7 天，具体看云存储服务协议），如果在此期间没有续费，到期后，云存储视频将会删除。
-
-### 云存储录像日期
+#### 云存储录像日期
 
 在加载云存储数据成功返回后，如果云端有视频回放数据，可以通过```cloudDays``` 属性获取有视频回放数据的日期。
 
@@ -263,9 +249,7 @@ TYCameraCloudServicePanelSDK.cloudServicePanel(withDevice: deviceModel, success:
 | startTime   | NSInteger | 当天 00:00:00 的 Unix 时间戳 |
 | endTime     | NSInteger | 当天 23:59:59 的 Unix 时间戳 |
 
-
-
-### 视频片段数据
+#### 视频片段
 
 在播放云存储视频前，需要获取到当天的视频片段数据。
 
@@ -298,9 +282,7 @@ TYCameraCloudServicePanelSDK.cloudServicePanel(withDevice: deviceModel, success:
 | endTime   | NSInteger | 视频结束时间 Unix 时间戳 |
 | endDate   | NSDate    | 视频结束时间             |
 
-
-
-### 云存储事件
+#### 云存储事件
 
 开启云存储服务后，设备通过侦测报警上报的事件，会和云视频关联起来。云存储的报警事件和侦测报警消息略有不同。他们的触发原因可能是一样的，但是侦测报警消息的删除不会影响到云存储事件，也不是所有的侦测报警消息都会触发云视频录制，比如电量警告等。而且云存储事件和云视频相关联，正常情况下，每一个云存储事件都会有一段对应的云视频。
 
@@ -326,8 +308,6 @@ TYCameraCloudServicePanelSDK.cloudServicePanel(withDevice: deviceModel, success:
 | success  | 成功回调，返回事件模型的数组   |
 | failure  | 失败回调，error 标示错误信息   |
 
-
-
 **TuyaSmartCloudTimeEventModel 数据模型**
 
 | 字段        | 类型      | 说明                           |
@@ -336,8 +316,6 @@ TYCameraCloudServicePanelSDK.cloudServicePanel(withDevice: deviceModel, success:
 | startTime   | NSInteger | 事件开始时间 Unix 时间戳       |
 | endTime     | NSInteger | 事件结束时间 Unix 时间戳       |
 | snapshotUrl | NSString  | 事件发生时，设备抓拍的实时图片 |
-
-
 
 ### 云视频播放
 
@@ -427,7 +405,7 @@ TYCameraCloudServicePanelSDK.cloudServicePanel(withDevice: deviceModel, success:
 
 `TuyaSmartCloudManager`会自动渲染视频，通过`videoView`方法获取视频渲染视图，并添加到屏幕上。
 
-### 其他功能
+#### 其他功能
 
 云存储视频播放也提供有声音开关，本地视频录制，截图等功能。
 
@@ -526,11 +504,9 @@ TYCameraCloudServicePanelSDK.cloudServicePanel(withDevice: deviceModel, success:
 | filePath     | 保存视频截图的文件路径                   |
 | thumbnilPath | 缩略图保存路径，如果不需要缩略图，传 nil |
 
-
-
 同样的，如果你只需要获取当前视频截图 `UIImage`对象，不需要自动保存，可以通过 `videoView`的 `- (UIImage *)screenshot;`方法获取截图。
 
-### 示例代码
+**示例代码**
 
 ObjC
 
