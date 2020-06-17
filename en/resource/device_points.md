@@ -1,4 +1,4 @@
-# Extension Functions
+# Extension Features
 
 Camera SDK provide some extension functions base on data point (DP). If you do not know about data point, please refer to [Custom Device Control](https://tuyainc.github.io/tuyasmart_home_ios_sdk_doc/en/resource/Device.html#custom-device-control).
 
@@ -9,7 +9,9 @@ Camera SDK provide some extension functions base on data point (DP). If you do n
 | TuyaSmartCameraDPManager  | Provides the ability to communicate with device through data points |
 | TuyaSmartCameraDPObserver | Provides the ability to monitor device data point value changes |
 
+## Device Control
 
+### Create instance
 
 **Declaration**
 
@@ -42,6 +44,8 @@ Add and remove device status listening observer.
 | Parameter | Description                                         |
 | --------- | --------------------------------------------------- |
 | observer  | need implement `TuyaSmartCameraDPObserver` protocol |
+
+### Query value
 
 **Declaration**
 
@@ -99,6 +103,8 @@ Asynchronous query data point value, in addition to memory card related function
 | success   | success callback, return the value of  the specified data point |
 | failure   | failure callback, error indicates an error message           |
 
+### Publish data
+
 **Declaration**
 
 Asynchronous set value for the specified data point.
@@ -116,39 +122,60 @@ Asynchronous set value for the specified data point.
 | success   | success callback, return the value of  the specified data point |
 | failure   | failure callback, error indicates an error message           |
 
+> Except for some data points in the memory card state, the camera will voluntarily report to the cloud when the data point state changes, and the SDK will update the device's data point status cache in real time. Therefore, in most cases, it is ok to directly obtain the value of the data point in the cache.
 
+> Asynchronous query data point value, is publish `NULL` to the device, under normal circumstances, the device received `NULL` for the data point, will respond the value of the specified data point. However, this behavior is implemented by camera manufacturers, some manufacturers do not handle this logic, so after publish `NULL`, the camera firmware will crash. So when using this interface, make sure that the vendor has the logic to handle `NULL` correctly for these data points.
 
-## Query value
+### Callback
 
-Except for some data points in the memory card state, the camera will voluntarily report to the cloud when the data point state changes, and the SDK will update the device's data point status cache in real time. Therefore, in most cases, it is ok to directly obtain the value of the data point in the cache.
+The `TuyaSmartCameraDPObserver` protocol provides the ability to monitor changes in the status of data points reported by the device.
 
-Asynchronous query data point value, is publish `NULL` to the device, under normal circumstances, the device received `NULL` for the data point, will respond the value of the specified data point. However, this behavior is implemented by camera manufacturers, some manufacturers do not handle this logic, so after publish `NULL`, the camera firmware will crash. So when using this interface, make sure that the vendor has the logic to handle `NULL` correctly for these data points.
+**Declaration**
+
+Device data point status change callback.
+
+```objc
+- (void)cameraDPDidUpdate: (TuyaSmartCameraDPManager *) manager dps: (NSDictionary *) dpsData;
+```
+
+**Parameters**
+
+| Parameter | Description |
+| --------- | --------------------------------------- -------------- |
+|manager | `TuyaSmartCameraDPManager` object |
+| dpsData | `dpId` and current value of the changed data point, `{dpName: value}` |
+
 
 ## Data point id
 
 Has open standard of camera data point, in the form of a string constants defined in `TuyaSmartCameraDPManager.h `, redefine as `TuyaSmartCameraDPKey`. The constant name is formed in the form of "TuyaSmartCamera"+"function"+"DPName".
 
-**Basic function**
+### Basic features
 
-| Data point       | Value type | Value range                                                  | Description                                                  |
-| ---------------- | ---------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| BasicIndicator   | BOOL       | `YES`: on; `NO`: off                                         | indicator light switch                                       |
-| BasicFlip        | BOOL       | `YES`: on; `NO`: off                                         | video flip                                                   |
-| BasicOSD         | BOOL       | `YES`: on; `NO`: off                                         | video time watermark                                         |
-| BasicPrivate     | BOOL       | `YES`: on; `NO`: off                                         | Privacy mode, after turning on, the camera does not collect audio and video |
-| BasicNightvision | String     | "0": off; "1": auto; "2": on                                 | night vision                                                 |
-| BasicPIR         | String     | "0": off; "1": low sensitivity; "2": medium sensitivity; "3": high sensitivity | passive infrared detection                                   |
+| Data point       | Value type | Value range                  | Description                                                  |
+| ---------------- | ---------- | ---------------------------- | ------------------------------------------------------------ |
+| BasicIndicator   | BOOL       | `YES`: on; `NO`: off         | indicator light switch                                       |
+| BasicFlip        | BOOL       | `YES`: on; `NO`: off         | video flip                                                   |
+| BasicOSD         | BOOL       | `YES`: on; `NO`: off         | video time watermark                                         |
+| BasicPrivate     | BOOL       | `YES`: on; `NO`: off         | Privacy mode, after turning on, the camera does not collect audio and video |
+| BasicNightvision | String     | "0": off; "1": auto; "2": on | night vision                                                 |
 
-**Detection alarm**
+### Motion detection alarm
 
-| Data point         | Value type | Value range                      | Description                   |
-| ------------------ | ---------- | -------------------------------- | ----------------------------- |
-| MotionDetect       | BOOL       | `YES`: on; `NO`: off             | motion detection alarm switch |
-| MotionSensitivity  | String     | "0": low; "1": medium; "2": high | motion detection sensitivity  |
-| DecibelDetect      | BOOL       | `YES`: on; `NO`: off             | sound detection alarm switch  |
-| DecibelSensitivity | String     | "0": low; "1": high              | sound detection sensitivity   |
+| Data point        | Value type | Value range                                                  | Description                   |
+| ----------------- | ---------- | ------------------------------------------------------------ | ----------------------------- |
+| BasicPIR          | String     | "0": off; "1": low sensitivity; "2": medium sensitivity; "3": high sensitivity | passive infrared detection    |
+| MotionDetect      | BOOL       | `YES`: on; `NO`: off                                         | motion detection alarm switch |
+| MotionSensitivity | String     | "0": low; "1": medium; "2": high                             | motion detection sensitivity  |
 
-**Memory card management**
+### Sound detection alarm
+
+| Data point         | Value type | Value range          | Description                  |
+| ------------------ | ---------- | -------------------- | ---------------------------- |
+| DecibelDetect      | BOOL       | `YES`: on; `NO`: off | sound detection alarm switch |
+| DecibelSensitivity | String     | "0": low; "1": high  | sound detection sensitivity  |
+
+### Memory card management
 
 | Data point        | Value type | Value range                                                  | Description                                                  |
 | ----------------- | ---------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -161,14 +188,14 @@ Has open standard of camera data point, in the form of a string constants define
 
 The value of `SDCardStorage`is a string which composed of total capacity, used capacity, free capacity by joined '|', the unit is `kb`. For example: "16777216|1048576|15728640" means that the total capacity is 16Gb, 1Gb has been used, and  15Gb is free.
 
-**PTZ control**
+### PTZ control
 
 |Data  point | Value type | Value range | Description |
 | ---------- | -------- | ----------------------------- ----- | -------------------------------------- |
 | PTZControl | String | "0": up; "2": right; "4": down; "6": left | controls the PTZ camera to rotate in the specified direction, and can only be published |
 |PTZStop | BOOL | YES: Stop rotation | stop camera rotation, can only be published |
 
-**Doorbell**
+### Doorbell
 
 | Data point | Value type | Value range | Description |
 | ------------------- | -------- | -------------------- -------- | ----------------------------------------- -|
@@ -192,26 +219,6 @@ The value range of the data point of the string enum type, there are correspondi
 | PTZControl | TuyaSmartCameraPTZDirection |
 | WirelessPowerMode | TuyaSmartCameraPowerMode |
 | SDCardStatus | TuyaSmartCameraSDCardStatus |
-
-## Observer
-
-The `TuyaSmartCameraDPObserver` protocol provides the ability to monitor changes in the status of data points reported by the device.
-
-**Declaration**
-
-Device data point status change callback.
-
-```objc
-- (void)cameraDPDidUpdate: (TuyaSmartCameraDPManager *) manager dps: (NSDictionary *) dpsData;
-```
-
-**Parameters**
-
-| Parameter | Description |
-| --------- | --------------------------------------- -------------- |
-|manager | `TuyaSmartCameraDPManager` object |
-| dpsData | `dpId` and current value of the changed data point, `{dpName: value}` |
-
 
 
 **Example**

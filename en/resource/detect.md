@@ -65,7 +65,7 @@ Gets the date on which the message was logged.
 
 
 
-### Message category
+### Message type
 
 There are many types of detection alarm messages according to the trigger mode, some of which can be divided into a large category. The SDK provides a list to get the default categories for sorting the query alarm messages.
 
@@ -95,10 +95,6 @@ Get the list of message categories.
 | msgCodes | NSArray  | Message types that the message category contains |
 
 > When getting a list of messages, the value of the `msgCodes` attribute of the message category can be passed in to get all types of alarm messages that this category contains.
-
-
-
-### Message type
 
 The message type represents the trigger form of the alarm message, which is reflected in the code as the `msgCode` attribute of the alarm message data model.
 
@@ -193,7 +189,7 @@ Batch delete alarm message.
 
 Depending on the message type, there may be different attachments. The `attachPic` property gets the url of the image attachment, and the `attachVideos` property gets the urls of the video attachments. Normally, this property has only one element.
 
-### Video message
+## Video message
 
 The video attachment in the video message is the encrypted video, which needs to be played through the interface provided by `TuyaSmartCloudManager`. the string element in `attachVideos` is component by url + "@" + encrypt key, like "url@key", When playing a video, need to pass in both the video url and the encrypt key.
 
@@ -280,7 +276,7 @@ The alarm message is saved in the Tuya cloud, and the video recording of the mem
 
 However, if there is a video recording at the time when the alarm message occurs, the SDK does not provide an interface for such correlation search. The developer can establish the correlation by searching whether there is a corresponding video recording in the video clip of the memory card on the same day by the trigger time of the alarm message.
 
-### Example
+**Example**
 
 ObjC
 

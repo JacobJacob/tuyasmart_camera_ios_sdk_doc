@@ -10,7 +10,7 @@ Request the cloud storage service status first. If the cloud storage service is 
 
 ## Cloud service
 
-### SDK integration
+### Import
 
 Cloud storage purchase needs to introduce the SDK of cloud storage service purchase page, and add the following code in podfile:
 
@@ -27,7 +27,7 @@ end
 
 Then run the `pod update` command in the root directory of project.
 
-### Initialize SDK
+### Use
 
 Initializing the SDK of cloud storage purchase service requires passing in the channel identifier of the registered app on the Tuya development platform.
 
@@ -69,10 +69,6 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
 }
 ```
 
-### User state synchronization
-
-When the user logs in/logs out, the login status of the user needs to be synchronized.
-
 **Declaration**
 
 Synchronize user login status.
@@ -81,7 +77,7 @@ Synchronize user login status.
 + (void)userStateChanged;
 ```
 
-
+> When the user logs in/logs out, the login status of the user must to be synchronized.
 
 **Example**
 
@@ -109,7 +105,7 @@ func login() {
     }
 ```
 
-### Cloud service purchase view controller
+###  Request cloud service purchase page
 
 The cloud storage purchase page is an H5 page. Since the corresponding page address needs to be requested from the cloud, the interface to obtain the cloud storage page is asynchronous, and the `TuyaSmartDeviceMode` object of the corresponding device needs to be passed in.
 
@@ -168,9 +164,7 @@ After purchasing the cloud storage service, the smart camera will upload the rec
 | TuyaSmartCloudManager         | Cloud storage service status, video data management and cloud video playback |
 | TuyaSmartCloudManagerDelegate | Cloud video playback delegate                                |
 
-### Initialize
-
-When 'TuyaSmartCloudManager' initializes, the device id needs to be passed in. Cloud video starts playing silently by default. If the sound need turned on when playing, the mute state can be set to `NO` when initialization. When cloud video plays, both the video frame data and the frame information are called back using the delegate method.
+When `TuyaSmartCloudManager` initializes, the device id needs to be passed in. Cloud video starts playing silently by default. If the sound need turned on when playing, the mute state can be set to `NO` when initialization. When cloud video plays, both the video frame data and the frame information are called back using the delegate method.
 
 **Declaration**
 
@@ -188,9 +182,7 @@ When 'TuyaSmartCloudManager' initializes, the device id needs to be passed in. C
 
 
 
-### Delegate
-
-The  ` TuyaSmartCloudManagerDelegate ` has only one method, will return each frame of video YUV data and frame information.
+The `TuyaSmartCloudManagerDelegate `has only one method, will return each frame of video YUV data and frame information. If you want to render video frame by yourself, set `autoRender` of `TuyaSmartCloudManager` to `NO`( default is `YES`), and then render the video in delegate method.
 
 **Declaration**
 
@@ -208,9 +200,7 @@ Respond video frame data and frame information.
 | frameBuffer  | Video frame data               |
 | frameInfo    | Video frame information        |
 
-
-
-### Loading data
+### Cloud storage data
 
 Before playback the cloud video, the relevant data of cloud storage needs to be loaded first. This interface will return the current state of cloud storage service, as well as the corresponding encryption secret key and authentication information.
 
@@ -228,8 +218,6 @@ Loading cloud storage data.
 | --------- | -------------------------------------------------- |
 | complete  | Complete callback, return the cloud service status |
 
-
-
 **enum TuyaSmartCloudState**
 
 | Value                            | Description                                                  |
@@ -245,7 +233,7 @@ Loading cloud storage data.
 
 After the cloud storage service expires, the uploaded cloud storage video is reserved for a period of time (usually 7 days, depending on the cloud storage service agreement). If there is no renewal during this period, the cloud storage video will be deleted after the expiration.
 
-### Cloud video date
+#### Cloud video date
 
 After successfully returning the loaded cloud storage data, if there is video playback data in the cloud, the date of video playback data can be obtained by `cloudDays`property.
 
@@ -262,9 +250,7 @@ After successfully returning the loaded cloud storage data, if there is video pl
 | startTime   | NSInteger | Unix timestamp of  00:00:00            |
 | endTime     | NSInteger | Unix timestamp of  23:59:59            |
 
-
-
-### Video time slice
+#### Video time slice
 
 Before playing the cloud video, you need to get the time slices of the video clips of that day.
 
@@ -297,9 +283,7 @@ Get the time slices of the video clips of some day.
 | endTime   | NSInteger | Video end time, Unix timestamp   |
 | endDate   | NSDate    | Video end date                   |
 
-
-
-### Cloud event
+#### Cloud event
 
 After the cloud storage service is started, the device will be associated with the cloud video by detecting the events reported by the alarm. Cloud storage alarm events and detection alarm messages are slightly different. Their trigger reasons may be the same, but the deletion of detection alarm message will not affect the cloud storage event, and not all detection alarm messages will trigger the cloud video recording, such as lowpower warning. Moreover, cloud storage events are associated with cloud videos. Under normal circumstances, each cloud storage event will have a corresponding cloud video.
 
@@ -428,7 +412,7 @@ If play a event (`TuyaSmartCloudTimeEventModel`), `startTime` pass in `TuyaSmart
 
 The `endTime` could pass in 'TuyaSmartCloudDayModel.entTime'.
 
-### Other functions
+#### Other functions
 
 **Declaration**
 
@@ -525,9 +509,7 @@ Video screenshot, image saved in the specified file path.
 | filePath     | The file path to save the picture                            |
 | thumbnilPath | Save the file path of the thumbnail and pass nil if you don't need it |
 
-
-
-### Example
+**Example**
 
 ObjC
 
