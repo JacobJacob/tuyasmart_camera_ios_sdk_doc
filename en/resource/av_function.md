@@ -398,44 +398,6 @@ func camera(_ camera: TuyaSmartCameraType!, didOccurredErrorAtStep errStepCode: 
 }
 ```
 
-### Video resolution
-
-When the video starts to play successfully (it can be live video or video playback), the resolution of the current video image can be directly obtained through SDK. When the resolution of the video changes, the delegate method will be called.
-
-**Declaration**
-
-Gets the width of the current video image.
-
-```objc
-- (CGFloat)getCurViewWidth;
-```
-
-**Declaration**
-
-Gets the height of the current video image.
-
-```objc
-- (CGFloat)getCurViewHeight;
-```
-
-**Declaration**
-
-The video resolution changes the delegate callback, which is also called when a live video stream or video recording is just starting to play.
-
-```objc
-- (void)camera:(id<TuyaSmartCameraType>)camera resolutionDidChangeWidth:(NSInteger)width height:(NSInteger)height;
-```
-
-**Parameters**
-
-| Parameter | Description           |
-| --------- | --------------------- |
-| camera    | Camera                |
-| width     | Width of video image  |
-| height    | Height of video image |
-
-
-
 ### Definition switching
 
 In the video live, you can switch the definition (a few cameras only support one kind of definition), currently only high-definition and standard clarity two kinds of definition, and only when the video live support. A memory card video recording saves only one definition stream of video at the time of recording.

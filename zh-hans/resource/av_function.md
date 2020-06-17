@@ -398,44 +398,6 @@ func camera(_ camera: TuyaSmartCameraType!, didOccurredErrorAtStep errStepCode: 
 }
 ```
 
-### 视频分辨率
-
-当视频成功开始播放以后（可以是视频直播，也可以是录像回放），可以通过 Camera SDK 直接获取到当前视频图像的分辨率，视频的分辨率改变时，也会调用代理方法通知代理监听。
-
-**接口说明**
-
-获取当前视频图像宽度
-
-```objc
-- (CGFloat)getCurViewWidth;
-```
-
-**接口说明**
-
-获取当前视频图像高度
-
-```objc
-- (CGFloat)getCurViewHeight;
-```
-
-**接口说明**
-
- 视频分辨率改变代理回调，在实时视频直播或视频录像刚开始播放时，也会调用
-
-```objc
-- (void)camera:(id<TuyaSmartCameraType>)camera resolutionDidChangeWidth:(NSInteger)width height:(NSInteger)height;
-```
-
-**参数说明**
-
-| 参数   | 说明                     |
-| ------ | ------------------------ |
-| camera | 分辨率改变的 Camera 对象 |
-| width  | 当前视频图像的宽度       |
-| height | 当前视频图像的高度       |
-
-
-
 ### 清晰度切换
 
 在实时视频直播时，可以切换清晰度（少数摄像机只支持一种清晰度），目前只有高清和标清两种清晰度，且只有实时视频直播时才支持。存储卡视频录像在录制时只保存了一种清晰度的视频流。
